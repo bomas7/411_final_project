@@ -34,13 +34,13 @@ This project is a web-based application designed to do the most important part o
   - Response Format : JSON    
   -  Success Response Example:
         - Code: 200
-        - Content: { "message": "success"}
+        - Content: { "weather": ['Cloudy', 'Rain', 'Thunderstorm', 'Snow', 'None']}
   - Example Request: 
       {}
   - Example Response:
     {
       "status": 200,
-      "message": "['Cloudy', 'Rain', 'Thunderstorm', 'Snow', 'None']
+      "weather": "['Cloudy', 'Rain', 'Thunderstorm', 'Snow', 'None']
     }
     
 ## REPLACE THESE WITH ALL OTHER ROUTES ##
