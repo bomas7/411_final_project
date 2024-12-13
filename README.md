@@ -2,6 +2,15 @@
 ## Bad Weather Checker App 
 ### Overview
 This project is a web-based application designed to do the most important part of weather checking: checking for bad weather! We allow users to set their location to any city in the world and check for the most important part of weather checking: bad weather. We let users know if any days are rain, snow, thunder, or cloudy in the near future.
+### To run
+  - Obtain an openweather API key and plug that into .env
+  - Unit tests:
+    - Make sure dependencies in requirements.txt are installed, make sure pytest is installed
+    - Run ```python3 -m pytest <path_to_test>```
+  - Smoke Tests:
+    - Make sure docker is installed
+    - Run ```docker-compose up``` within bad_weather_project directory
+    - Run ```<path_to_smoketests.sh>```
 ### Routes 
 1. **Set Location**
   - Route Path : `/api/set-location`
