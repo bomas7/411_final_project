@@ -32,7 +32,7 @@ def test_invalid_get_coordinates(weather_model):
 def test_set_location(weather_model):
     """Test that set_location correctly returns sets a valid location"""
     works = weather_model.set_location("London", "GB")
-    assert works and weather_model.city == "London" and weather_model.state == "" and weather_model.country == "GB", "Location successfully set"
+    assert works and weather_model.city == "London" and weather_model.state == "" and weather_model.country == "GB", "Location was not set"
 
 def test_invalid_set_location(weather_model):
     """Test that set_location does not set a location if it is invalid"""
