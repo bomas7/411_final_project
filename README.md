@@ -3,7 +3,7 @@
 ### Overview
 This project is a web-based application designed to do the most important part of weather checking: checking for bad weather! We allow users to set their location to any city in the world and check for the most important part of weather checking: bad weather. We let users know if any days are rain, snow, thunder, or cloudy in the near future.
 ### Routes 
-1. **Set Location **
+1. **Set Location**
   - Route Path : `/api/set-location`
   - Request Type  : PUT
   -  Purpose  : Allows users to get change the location (initially set to Boston)
@@ -27,27 +27,23 @@ This project is a web-based application designed to do the most important part o
   }
 
 2. **Set Custom Location**
-  - Route: `/location`  
-  - Request Type : `POST`  
-  - Purpose : Set custom location for future requests (overrides default of Boston) 
+  - Route: `/api/bad-weather-checker`  
+  - Request Type : `GET`  
+  - Purpose : Check if the main weather over next five days is bad and return a list of weather status corresponding to each day
   - Request Format: JSON
-    - lon (string): Longitude of city
-    - lat (string): Latitude of city
   - Response Format : JSON    
   -  Success Response Example:
         - Code: 200
         - Content: { "message": "success"}
   - Example Request: 
-      {
-        "lon": "30",
-        "lat": "25"
-      }
+      {}
   - Example Response:
     {
       "status": 200,
-      "message": "success
+      "message": "['Cloudy', 'Rain', 'Thunderstorm', 'Snow', 'None']
     }
     
+## REPLACE THESE WITH ALL OTHER ROUTES ##
  3. **Bad Weather Forecast**
   - Route Name and Path: `/precipitation`  
   - Request Type: `GET`  
