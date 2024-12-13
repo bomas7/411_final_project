@@ -1,15 +1,15 @@
 # 411_final_project
 ## Bad Weather Checker App 
 ### Overview
-This project is a web-based application designed to do the most important part of weather checking: checking for bad weather! (ADD MORE)
+This project is a web-based application designed to do the most important part of weather checking: checking for bad weather! We allow users to set their location to any city in the world and check for the most important part of weather checking: bad weather. We let users know if any days are rain, snow, thunder, or cloudy in the near future.
 ### Routes 
-1. **Get Coordinates**
-  - Route Path : `/get_coordinates`
-  - Request Type  : GET
-  -  Purpose  : Allows users to get the Latitude and Longitude coordinates of a city 
+1. **Set Location **
+  - Route Path : `/api/set-location`
+  - Request Type  : PUT
+  -  Purpose  : Allows users to get change the location (initially set to Boston)
   -  Request Format:
     - city_name (string): Name of city
-    - state_code (string): *(Parameter is Only for cities in US)* FIPS Code of State of City
+    - state_code (string): *(Parameter is Only for cities in US)* Name of state
     - country_code (string): ISO 3166 Code of Country of City
   -  Response Format: JSON
   -  Success Response Example:
@@ -17,15 +17,15 @@ This project is a web-based application designed to do the most important part o
     - Content: { "lon": "30", "lat": "35"}
   -  Example Request: 
     {
-      "city_name": "Boston",
-      "state_code": "25",
-      "country_code": "ISO 3166-2:US"
+      "city_name": "London",
+      "country_code": "GB"
     }
   - Example Response:
   {
     "status": 200,
     "data": { "lon": "30", "lat": "35"}
   }
+
 2. **Set Custom Location**
   - Route: `/location`  
   - Request Type : `POST`  
