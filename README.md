@@ -36,11 +36,11 @@ This project is a web-based application designed to do the most important part o
   }
 
 2. **Set Custom Location**
-  - Route: `/api/bad-weather-checker`  
+  - Route Path : `/api/bad-weather-checker`  
   - Request Type : `GET`  
   - Purpose : Check if the main weather over next five days is bad and return a list of weather status corresponding to each day
   - Request Format: JSON
-  - Response Format : JSON    
+  - Response Format: JSON    
   -  Success Response Example:
         - Code: 200
         - Content: { "weather": ['Cloudy', 'Rain', 'Thunderstorm', 'Snow', 'None']}
@@ -52,92 +52,104 @@ This project is a web-based application designed to do the most important part o
       "weather": "['Cloudy', 'Rain', 'Thunderstorm', 'Snow', 'None']
     }
     
-## REPLACE THESE WITH ALL OTHER ROUTES ##
- 3. **Bad Weather Forecast**
-  - Route Name and Path: `/precipitation`  
-  - Request Type: `GET`  
-  - Purpose : Get five day weather forecast based on set location (gives Boston location if none is set).  
-  - Request Format: Boston
-  - Request Format JSON
-  - Request Body: N/A
+  3. **Create User**
+  - Route Path : `/api/create-user`
+  - Request Type : `POST`
+  - Purpose : Allows users to create a new user account.
+  - Request Format:
+  -  username (string): The username for the new user.
+  -  password (string): The password for the new user.
   - Response Format: JSON
-    Success Response Example:
-      - Code: 200
-      - Content: { "weather": ["none", "rain", "thunderstorm"] }
-  - Example Request: {}
-  - Example Response: 
-    {
-      "status": "200",
-      "data": {"weather": ["none", "rain", "thunderstorm"]}
-    }
-    
-    
-4. **Login**
-  - Route Name and Path: `/login`  
-  - Request Type: `POST`  
-  - Purpose : Login to user account with username and password and verifies based on hashed password
-  - Request Format JSON
-  - Request Body: 
-    - username (string): User's username
-    - password (string): User's password
-  - Response Format: JSON
-    Success Response Example:
-      - Code: 200
-      - Content: { "message": "logged in" }
-  - Example Request: 
+  - Success Response Example:
+      - Code: 201
+      - Content: { "username": "example_username" }
+  - Example Request:
+   { 
+     "username": "weatherman",
+     "password": "password"
+   }
+  - Example Response:
   {
-    "username": "test",
-    "password": "securepassword",
-  }
-  - Example Response: 
-    {
-      "status": "200",
-      "message": "logged in"
-    }
+    "status": 201,
+    "username": "weatherman"
+  } 
 
+4. **User Login**
+- Route Path : `/api/login`
+- Request Type  : POST
+- Purpose  : Authenticate a user and allow them to log in.
+- Request Format:
+    - username (string): The username of the user.
+    - password (string): The user's password.
+- Response Format: JSON
+- Success Response Example:
+    - Code: 200
+    - Content: { "message": "User example_username logged in successfully." }
+- Example Request:
+{
+  "username": "weatherman",
+  "password": "password"
+}
+- Example Response:
+{
+  "status:: 200
+  "message": "User example_username logged in successfully."
+}
 
-5. **Create Account**
-  - Route Name and Path: `/create_account`  
-  - Request Type: `POST`  
-  - Purpose : Create a new user account with associated username and password
-  - Request Format JSON
-  - Request Body: 
-    - username (string): User's username
-    - password (string): User's password
-  - Response Format: JSON
-    Success Response Example:
-      - Code: 200
-      - Content: { "message": "account created" }
-  - Example Request: 
-  {
-    "username": "test",
-    "password": "securepassword",
-  }
-  - Example Response: 
-    {
-      "status": "200",
-      "message": "account created"
-    }
+5. **Update Password**
+- Route Path  : `/api/update-password`
+- Request Type  : PUT
+- Purpose  : Update a user's password.
+- Request Format:
+    - username (string): The username of the user.
+    - new_password (string): The user's new password.
+- Response Format: JSON
+- Success Response Example:
+    - Code: 200
+    - Content: { "message": "Successfully changed password" }
+- Example Request:
+{
+  "username": "weatherman",
+  "new_password": "newpassword"
+}
+- Example Response:
+{
+  "status" 200
+  "message": "Successfully changed password"
+}
 
-6. **Update-Password**
-  - Route Name and Path: `/updated_password`  
-  - Request Type: `PUT`  
-  - Purpose : Update user's password with new password
-  - Request Format JSON
-  - Request Body: 
-    - username (string): User's username
-    - new_password (string): User's new_password
-  - Response Format: JSON
-    Success Response Example:
-      - Code: 200
-      - Content: { "message": "account created" }
-  - Example Request: 
-  {
-    "username": "test",
-    "password": "securepassword",
-  }
-  - Example Response: 
-    {
-      "status": "200",
-      "message": "new password set"
-    }
+6. **User Logout**
+- Route Path  : `/api/logout`
+- Request Type  : POST
+- Purpose  : Log out a user.
+- Request Format:
+    - username (string): The username of the user.
+    - Response Format: JSON
+- Success Response Example:
+    - Code: 200
+    - Content: { "message": "User weatherman logged out successfully." }
+- Example Request:
+{
+  "username": "weatherman"
+}
+- Example Response:
+{
+  "message": "User weatherman logged out successfully."
+}
+
+7. **Initialize Database**
+- Route Path  : `/api/init-db`
+- Request Type  : POST
+- Purpose  : Initialize or recreate database tables. Use with caution as this will delete existing data.
+- Request Format: None
+- Response Format: JSON
+- Success Response Example:
+    - Code: 200
+    - Content: { "message": "Database initialized successfully."
+}
+- Example Request: {}
+- Example Response:
+{
+    "status": 200,
+    "message": "Database initialized successfully."
+}
