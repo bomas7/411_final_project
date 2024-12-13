@@ -116,6 +116,37 @@ def create_app(config_class=ProductionConfig):
             app.logger.error("Error during login for username %s: %s", username, str(e))
             return jsonify({"error": "An unexpected error occurred."}), 500
 
+    @app.route('/api/update-password', methods=['PUT'])
+    def update_password():
+        """
+        Route to update password
+
+        Expected JSON Input:
+            - username (str): The username of the user.
+            - new_password (str): The user's new_password.
+
+        Returns:
+            JSON response indicating the success of the login.
+
+        Raises:
+            500 error if any issues
+        """
+        try:
+            data = request.get_json()
+            if not data or 'username' not in data or 'new_password' not in data:
+                app.logger.error("Invalid request payload for password change.")
+                raise BadRequest("Invalid request payload. 'username' and 'password' are required.")
+
+            username = data['username']
+            new_password = data['new_password']
+            Users.update_password(username, new_password)
+
+            app.logger.info("User %s successfully changed password", username)
+            return jsonify({"message": "Successfully changed password"}), 200
+
+        except Exception as e:
+            app.logger.error("Error during password change %s", str(e))
+            return jsonify({"error": "An unexpected error occurred."}), 500
 
     @app.route('/api/logout', methods=['POST'])
     def logout():

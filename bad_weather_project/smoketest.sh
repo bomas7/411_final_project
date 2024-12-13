@@ -74,6 +74,26 @@ login_user() {
   fi
 }
 
+update_password() {
+  echo "Changing password..."
+  response=$(curl -s -X PUT "$BASE_URL/update-password" -H "Content-Type: application/json" \
+    -d '{"username":"testuser", "new_password": "new_password123"}')
+  if echo "$response" | grep -q '"message": "Successfully changed password"'; then
+    echo "User changed password successfully."
+    if [ "$ECHO_JSON" = true ]; then
+      echo "Password Update Response JSON:"
+      echo "$response" | jq .
+    fi
+  else
+    echo "Failed to update password."
+    echo "$responsee"
+    if [ "$ECHO_JSON" = true ]; then
+      echo "Error Response JSON:"
+      echo "$response" | jq .
+    fi
+    exit 1
+  fi
+}
 # Function to log out a user
 logout_user() {
   echo "Logging out user..."
@@ -96,21 +116,6 @@ logout_user() {
 }
 
 # Function to initialize the database
-init_db() {
-  echo "Initializing the database..."
-  response=$(curl -s -X POST "$BASE_URL/init-db")
-  if echo "$response" | grep -q '"status": "success"'; then
-    echo "Database initialized successfully."
-    if [ "$ECHO_JSON" = true ]; then
-      echo "Initialization Response JSON:"
-      echo "$response" | jq .
-    fi
-  else
-    echo "Failed to initialize the database."
-    exit 1
-  fi
-}
-
 init_db() {
   echo "Initializing the database..."
   response=$(curl -s -X POST "$BASE_URL/init-db")
@@ -162,6 +167,7 @@ check_health
 init_db
 create_user
 login_user
+update_password
 set_location
 bad_weather_checker
 logout_user
