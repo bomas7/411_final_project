@@ -4,8 +4,6 @@ import time
 from typing import Any, List
 import requests
 
-# from dotenv import load_dotenv
-# load_dotenv()
 
 from bad_weather_checker.utils.logger import configure_logger
 
@@ -13,6 +11,8 @@ logger = logging.getLogger(__name__)
 configure_logger(logger)
 
 
+from dotenv import load_dotenv
+load_dotenv()
 API_KEY = os.getenv("WEATHER_API_KEY")
 
 DEFAULT_CITY = "Boston"
